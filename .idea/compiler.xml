@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGateway" options="-parameters" />
+      <module name="ApiGateway.main" options="-parameters" />
+      <module name="ApiGateway.test" options="-parameters" />
+      <module name="DashboardService" options="-parameters" />
+      <module name="DashboardService.main" options="-parameters" />
+      <module name="DashboardService.test" options="-parameters" />
+      <module name="HouseKeepingService" options="-parameters" />
+      <module name="HouseKeepingService.main" options="-parameters" />
+      <module name="HouseKeepingService.test" options="-parameters" />
+      <module name="MaintenanceService" options="-parameters" />
+      <module name="MaintenanceService.main" options="-parameters" />
+      <module name="MaintenanceService.test" options="-parameters" />
+      <module name="ReceptionService" options="-parameters" />
+      <module name="ReceptionService.main" options="-parameters" />
+      <module name="ReceptionService.test" options="-parameters" />
+      <module name="RoomService" options="-parameters" />
+      <module name="RoomService.main" options="-parameters" />
+      <module name="RoomService.test" options="-parameters" />
+    </option>
+  </component>
+</project>

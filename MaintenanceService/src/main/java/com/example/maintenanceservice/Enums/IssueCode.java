@@ -1,0 +1,24 @@
+package com.example.maintenanceservice.Enums;
+
+public enum IssueCode {
+
+    AIR_CONDITIONER_BROKEN,
+
+    LIGHT_BULB_REPLACEMENT,
+
+    WATER_LEAK,
+
+    ELECTRICAL_ISSUE,
+
+    DOOR_LOCK_MALFUNCTION,
+
+    WINDOW_WONT_CLOSE,
+
+    TV_NOT_WORKING,
+
+    MINI_FRIDGE_NOT_WORKING,
+
+    WATER_HEATER_BROKEN,
+
+    BROKEN_CURTAIN_RAIL
+}
