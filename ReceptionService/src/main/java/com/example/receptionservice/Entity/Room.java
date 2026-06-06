@@ -35,6 +35,9 @@ public class Room {
     @Column(name = "near_elevator")
     private Boolean nearElevator;
 
+    @Column(name = "near_stairs")
+    private Boolean nearStairs;
+
     @Column(name = "last_cleaned")
     private LocalDateTime lastCleaned;
 }

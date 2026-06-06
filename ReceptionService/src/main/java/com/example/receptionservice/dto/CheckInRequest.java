@@ -12,5 +12,6 @@ public class CheckInRequest {
     private RoomType roomType;
     private Integer preferredFloor;
     private Boolean nearElevator;
+    private Boolean nearStairs;
     private Integer numberOfNights;
 }

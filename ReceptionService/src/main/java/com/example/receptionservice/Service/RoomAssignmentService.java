@@ -45,6 +45,17 @@ public class RoomAssignmentService {
             }
         }
 
+        // Stair preferences
+        if (checkInRequest.getNearStairs() != null) {
+            List<Room> stairRooms = availableRooms.stream()
+                    .filter(room -> room.getNearStairs().equals(checkInRequest.getNearStairs()))
+                    .toList();
+
+            if (!stairRooms.isEmpty()) {
+                availableRooms = stairRooms;
+            }
+        }
+
         //Longest clean room
         return availableRooms.stream()
                 .sorted(Comparator.comparing(Room::getLastCleaned))
