@@ -7,6 +7,7 @@ import com.example.receptionservice.dto.CheckInRequest;
 import com.example.receptionservice.dto.CheckInResponse;
 import com.example.receptionservice.dto.CheckOutResponse;
 import com.example.receptionservice.dto.RoomStatusResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ReceptionController {
     }
 
     @PostMapping("/checkin")
-    public CheckInResponse checkIn(@RequestBody CheckInRequest checkInRequest) {
+    public CheckInResponse checkIn(@Valid @RequestBody CheckInRequest checkInRequest) {
         return receptionService.checkIn(checkInRequest);
     }
 
