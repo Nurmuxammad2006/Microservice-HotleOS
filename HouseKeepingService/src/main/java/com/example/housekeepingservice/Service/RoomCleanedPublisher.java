@@ -20,29 +20,34 @@ public class RoomCleanedPublisher {
         this.objectMapper = objectMapper;
     }
 
-    public void publishRoomCleaned(
-            Integer roomNumber
-    ) {
-
+    public void publishRoomCleaned(Integer roomNumber) {
         try {
-
             RoomCleanedEvent event =
-                    new RoomCleanedEvent(
-                            roomNumber
-                    );
+                    new RoomCleanedEvent(roomNumber);
 
             String json =
-                    objectMapper.writeValueAsString(
-                            event
-                    );
+                    objectMapper.writeValueAsString(event);
+
+            System.out.println(
+                    "PUBLISHING ROOM CLEANED: " + json
+            );
 
             rabbitTemplate.convertAndSend(
-                    RabbitMQConfig.ROOM_CLEANED_QUEUE,
+                    RabbitMQConfig.ROOM_CLEANED_RECEPTION_QUEUE,
                     json
             );
 
-        } catch (Exception e) {
+            rabbitTemplate.convertAndSend(
+                    RabbitMQConfig.ROOM_CLEANED_DASHBOARD_QUEUE,
+                    json
+            );
 
+            System.out.println(
+                    "ROOM CLEANED MESSAGE SENT TO RECEPTION AND DASHBOARD"
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(
                     "Failed to publish room cleaned event"
             );

@@ -7,9 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface CleaningTaskRepository extends JpaRepository<CleaningTask, Long> {
+public interface CleaningTaskRepository
+        extends JpaRepository<CleaningTask, Long> {
 
-    List<CleaningTask> findByStatus(CleaningTaskStatus status);
+    List<CleaningTask> findByStatus(
+            CleaningTaskStatus status
+    );
 
-    Optional<CleaningTask> findByRoomNumberOrderByCreatedAtDesc(Integer roomNumber);
+    Optional<CleaningTask> findTopByRoomNumberOrderByCreatedAtDesc(
+            Integer roomNumber
+    );
 }

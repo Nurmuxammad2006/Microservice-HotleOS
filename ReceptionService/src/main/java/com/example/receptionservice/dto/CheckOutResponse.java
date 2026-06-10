@@ -9,12 +9,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CheckOutResponse {
-
     private String guestName;
-
     private Integer roomNumber;
-
     private BigDecimal totalBill;
-
     private String message;
 }

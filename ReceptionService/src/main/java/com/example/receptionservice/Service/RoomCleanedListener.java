@@ -17,7 +17,10 @@ public class RoomCleanedListener {
     private final RoomRepository roomRepository;
     private final ObjectMapper objectMapper;
 
-    public RoomCleanedListener(RoomRepository roomRepository, ObjectMapper objectMapper) {
+    public RoomCleanedListener(
+            RoomRepository roomRepository,
+            ObjectMapper objectMapper
+    ) {
         this.roomRepository = roomRepository;
         this.objectMapper = objectMapper;
     }
@@ -26,21 +29,54 @@ public class RoomCleanedListener {
             queues = RabbitMQConfig.ROOM_CLEANED_QUEUE
     )
     public void receive(String message) {
+
+        System.out.println(
+                "ROOM CLEANED MESSAGE RECEIVED: " + message
+        );
+
         try {
-            RoomCleanedEvent event = objectMapper.readValue(message, RoomCleanedEvent.class);
+            RoomCleanedEvent event =
+                    objectMapper.readValue(
+                            message,
+                            RoomCleanedEvent.class
+                    );
 
-            Room room = roomRepository.findByRoomNumber(event.getRoomNumber())
-                    .orElseThrow(() -> new RuntimeException("Room not found"));
+            System.out.println(
+                    "PARSED CLEANED ROOM NUMBER: "
+                            + event.getRoomNumber()
+            );
 
-            if (room.getStatus() == RoomStatus.DIRTY) {
-                room.setStatus(RoomStatus.AVAILABLE);
+            Room room =
+                    roomRepository
+                            .findByRoomNumber(
+                                    event.getRoomNumber()
+                            )
+                            .orElseThrow(
+                                    () -> new RuntimeException(
+                                            "Room not found"
+                                    )
+                            );
 
-                room.setLastCleaned(LocalDateTime.now());
-            }
+            System.out.println(
+                    "ROOM BEFORE UPDATE: "
+                            + room.getStatus()
+            );
+
+            room.setStatus(RoomStatus.AVAILABLE);
             room.setLastCleaned(LocalDateTime.now());
+
             roomRepository.save(room);
+
+            System.out.println(
+                    "ROOM UPDATED TO AVAILABLE: "
+                            + event.getRoomNumber()
+            );
+
         } catch (Exception e) {
-            throw new RuntimeException("Failed to process room cleaned event");
+            e.printStackTrace();
+            throw new RuntimeException(
+                    "Failed to process room cleaned event"
+            );
         }
     }
 }

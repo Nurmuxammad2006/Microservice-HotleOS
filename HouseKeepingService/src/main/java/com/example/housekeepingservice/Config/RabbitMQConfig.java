@@ -12,6 +12,28 @@ public class RabbitMQConfig {
             "room-vacated-queue";
     public static final String ROOM_CLEANED_QUEUE =
             "room-cleaned-queue";
+    public static final String ROOM_CLEANED_RECEPTION_QUEUE =
+            "room-cleaned-reception-queue";
+
+    public static final String ROOM_CLEANED_DASHBOARD_QUEUE =
+            "room-cleaned-dashboard-queue";
+    public static final String ROOM_VACATED_HOUSEKEEPING_QUEUE =
+            "room-vacated-housekeeping-queue";
+
+    @Bean
+    public Queue roomVacatedHousekeepingQueue() {
+        return new Queue(ROOM_VACATED_HOUSEKEEPING_QUEUE, true);
+    }
+
+    @Bean
+    public Queue roomCleanedReceptionQueue() {
+        return new Queue(ROOM_CLEANED_RECEPTION_QUEUE, true);
+    }
+
+    @Bean
+    public Queue roomCleanedDashboardQueue() {
+        return new Queue(ROOM_CLEANED_DASHBOARD_QUEUE, true);
+    }
 
     @Bean
     public Queue roomVacatedQueue() {
