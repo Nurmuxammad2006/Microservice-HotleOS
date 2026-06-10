@@ -26,7 +26,7 @@ public class RoomCleanedListener {
     }
 
     @RabbitListener(
-            queues = RabbitMQConfig.ROOM_CLEANED_QUEUE
+            queues = RabbitMQConfig.ROOM_CLEANED_RECEPTION_QUEUE
     )
     public void receive(String message) {
 
